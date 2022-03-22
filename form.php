@@ -34,12 +34,11 @@ if (isset($_POST["next"])) {
     $_POST['phone'] = $phone;
     $_POST['address'] = $address;
     $_POST['email'] = $email;
-    $_SESSION["index"]= $_SESSION["index"]+1;
+    $_SESSION["index"] = $_SESSION["index"] + 1;
     if ($_SESSION["index"] >= $xmlRootElement->count()) {
         $_SESSION["index"] = 0;
     }
 }
-
 
 if (isset($_POST["prev"])) {
     $_POST['name'] = $name;
@@ -71,23 +70,31 @@ if (isset($_POST['insert'])) {
  * update an existing field in XML file
  */
 if (isset($_POST["update"])) {
-    $changeName = $_POST["name"];
-    $changePhone = $_POST["phone"];
-    $changeAddress = $_POST["address"];
-    $changeEmail = $_POST["email"];
-    if (isset($_POST['num'])) {
-        $index = $_POST["num"] + 1;
-        $xml->employee[$_SESSION["index"]]->name = $changeName;
-        $xml->employee[$_SESSION["index"]]->phone = $changePhone;
-        $xml->employee[$_SESSION["index"]]->address = $changeAddress;
-        $xml->employee[$_SESSION["index"]]->Email = $changeEmail;
-        $xml->asXML("EmployeeData.xml");
+    if (isset($_SESSION["index"])) {
+        $index = $_SESSION["index"];
+        $newEmployee->updateEmployeeElement($xmlRootElement, $index);
+        $file->saveData($xmlRootElement);
     }
 }
 
-//if(isset($_POST["delete"])){
-//    unset($xmlRootElement->employee[$_SESSION["index"]]);
-//}
+if (isset($_POST["delete"])) {
+    if (isset($_SESSION["index"])) {
+        $index = $_SESSION["index"];
+        $newEmployee->deleteEmployeeElement($xmlRootElement, $index);
+    }
+    $file->saveData($xmlRootElement);
+}
+if (isset($_POST["searchByName"])) {
+    $key = $_POST["name"];
+    $found = 0;
+    for ($test = 0; $test < count($xmlRootElement->employee); $test++) {
+        if (strcmp($key, $xmlRootElement->employee[$test]->name) == 0) {
+            $_SESSION["id"] = $test;
+            echo $xmlRootElement->employee[$test]->name;
+        }
+    }
+}
+
 ?>
 
     <!doctype html>
@@ -118,7 +125,7 @@ if (isset($_POST["update"])) {
             <tr>
                 <th><label>Email</label></th>
                 <td><input type="text" name="email" value="<?php data("email"); ?>"></td>
-                <input type="text" name="num" value="<?=  $_SESSION["index"] ?>" readonly>
+                <input type="text" name="num" value="<?= $_SESSION["index"] ?>" readonly>
             <tr align="center">
                 <td>
 

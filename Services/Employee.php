@@ -12,6 +12,20 @@ class Employee
         return $element;
     }
 
+    function updateEmployeeElement($rootElement,$index){
+        $rootElement->employee[$index]->name = $_POST["name"];
+        $rootElement->employee[$index]->phone = $_POST["phone"];
+        $rootElement->employee[$index]->address =$_POST["address"];
+        $rootElement->employee[$index]->Email = $_POST["email"];
+
+    }
+
+    function deleteEmployeeElement($rootElement, $index){
+        unset($rootElement->employee[$index]);
+    }
+
+
+
     function navigateEmployee($rootElement, $index): array
     {
         $name    = $rootElement->employee[$index]->name;
@@ -20,4 +34,5 @@ class Employee
         $email   = $rootElement->employee[$index]->Email;
         return [$name,$phone,$address,$email];
     }
+
 }
