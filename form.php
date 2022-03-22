@@ -104,45 +104,56 @@ if (isset($_POST["searchByName"])) {
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="Static/style.css">
         <title>Document</title>
     </head>
     <body>
-    <form action="" method="post">
-        <table>
+    <form action="" method="post" class=" form-group ">
+        <table class="">
             <tr>
-                <th><label>Name</label></th>
-                <td><input type="text" name="name" value="<?php data("name"); ?>"></td>
+                <th colspan="2"><input type="text" name="num" value="<?= $_SESSION["index"] ?>" style="background-color:#495057;color: #80bdff;" readonly></th>
+            </tr>
+            <tr >
+                <th><label id="name-label" style="color: #485563">Name</label></th>
+                <td><input class="inputx" type="text" name="name" value="<?php data("name"); ?>" ></td>
             </tr>
             <tr>
-                <th><label>Phone</label></th>
-                <td><input type="text" name="phone" value="<?php data("phone"); ?>"></td>
+                <th><label id="name-label" style="color: #485563">Phone</label></th>
+                <td><input class="inputx" type="text" name="phone" value="<?php data("phone"); ?>"></td>
 
             </tr>
             <tr>
-                <th><label>Address</label></th>
-                <td><input type="text" name="address" value="<?php data("address"); ?>"></td>
+                <th><label id="name-label" style="color: #485563">Address</label></th>
+                <td><input class="inputx" type="text" name="address" value="<?php data("address"); ?>"></td>
             </tr>
             <tr>
-                <th><label>Email</label></th>
-                <td><input type="text" name="email" value="<?php data("email"); ?>"></td>
-                <input type="text" name="num" value="<?= $_SESSION["index"] ?>" readonly>
+                <th><label id="name-label" style="color: #485563">Email</label></th>
+                <td><input class="inputx" type="text" name="email" value="<?php data("email"); ?>"></td>
             <tr align="center">
                 <td>
 
                 </td>
-                <td>
-                    <input type="submit" name="prev" value="prev">
-                    <input type="submit" name="next" value="next">
+                <td><br>
+                    <input type="submit" name="prev" value="<<" class="btnx color-8">
+                    <input type="submit" name="next" value=">>" class="btnx color-8">
                 </td>
             </tr>
         </table>
 
+        <div class="button-control">
+            <div class="inner1">
+                <input type="submit" name="insert" value="insert" class="btn-hover color-8">
+                <input type="submit" name="update" value="Update" class="btn-hover color-8">
+                <input type="submit" name="delete" value="Delete" class="btn-hover color-8">
 
-        <input type="submit" name="insert" value="insert">
-        <input type="submit" name="update" value="Update">
-        <input type="submit" name="delete" value="Delete">
-        <input type="submit" name="searchByName" value="Search By Name">
-        <input type="submit" name="showTable" value="Show XML Data">
+            </div>
+            <div style="margin-top: 10px;margin-bottom: 10px;">
+                <input type="submit" name="searchByName" value="Search By Name" class="btn-hover color-8">
+            </div>
+            <div>
+<!--                <input type="submit" name="showTable" value="Show XML Data" class="btn-hover color-8">-->
+            </div>
+        </div>
     </form>
 
     </body>
