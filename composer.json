@@ -1,0 +1,23 @@
+{
+  "name": "hegabovic/projectxml",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Hegabovic",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "ext-simplexml": "*"
+  },
+  "autoload": {
+    "classmap": [
+      "Model","Services","Utilities","Views"
+    ],
+    "files": [
+      "config.php"
+    ]
+  }
+}
